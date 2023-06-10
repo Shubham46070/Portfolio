@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Converter</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+    <main>
+        <header>
+            <h1>Temperature Converter</h1>
+        </header>
+        <section class="inputs">
+            <input type="number" name="celcius" id="celcius" class="input" placeholder="Celcius">
+            <input type="number" name="fahrenheit" id="fahrenheit" class="input" placeholder="Fahrenheit">
+            <input type="number" name="kelvin" id="kelvin" class="input" placeholder="Kelvin">
+        </section>
+    </main>
+    <style>
+    *{
+        margin: 0;
+        padding: 0;
+        font-family: sans-serif;
+    }
+    
+    main {
+        width: 100%;
+        height: 100vh;
+        background-image: linear-gradient(to bottom, #60ac37, #F7A800);
+    }
+    
+    header {
+        display: flex;
+        justify-content: center;
+        padding-top: 200px;
+    }
+    
+    h1 {
+        margin-bottom: 30px;
+    }
+    
+    .inputs {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        max-width: 768px;
+        margin: 0 auto;
+    }
+    
+    .input {
+        flex: 1 1 40%;
+        margin: 15px;
+        appearance: none;
+        background: none;
+        background-color: #FFF;
+        border-radius: 8px;
+        padding: 15px;
+        border: none;
+        outline: none;
+        transition: 0.4s;
+    }
+    
+    .input:focus {
+        box-shadow: 0px 0px 6px 1px rgba(0, 0, 0, 0.2);
+    }
+    </style>
+    <script src="main.js"></script>
+    <script>const celciusInput = document.getElementById("celcius");
+        const fahrenheitInput = document.getElementById("fahrenheit");
+        const kelvinInput = document.getElementById("kelvin");
+        
+        const inputs = document.getElementsByClassName("input");
+        
+        for (let i = 0; i < inputs.length; i++) {
+            let input = inputs[i];
+        
+            input.addEventListener("input", function (e) {
+                let value = parseFloat(e.target.value);
+                
+                switch (e.target.name) {
+                    case "celcius":
+                        fahrenheitInput.value = (value * 1.8) + 32;
+                        kelvinInput.value = value + 273.15;
+                        break;
+                    case "fahrenheit":
+                        celciusInput.value = (value - 32) / 1.8;
+                        kelvinInput.value = ((value - 32) / 1.8) + 273.15;
+                        break;
+                    case "kelvin":
+                        celciusInput.value = value - 273.15;
+                        fahrenheitInput.value = ((value - 273.15) * 1.8) + 32;
+                        break;
+                }
+            });
+        }</script>
+</body>
+</html>
